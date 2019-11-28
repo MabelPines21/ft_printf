@@ -6,7 +6,7 @@
 /*   By: vaisha <vaisha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 13:00:52 by vaisha            #+#    #+#             */
-/*   Updated: 2019/11/19 14:55:53 by vaisha           ###   ########.fr       */
+/*   Updated: 2019/11/28 13:48:15 by vaisha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,14 @@ void		ft_only_width(t_data *list, char *s, char *str, int i)
 	ft_write_and_clean_s(list, str);
 }
 
-void		ft_width_s(t_data *list, char *s)
+void		ft_width_s(t_data *list)
 {
-	int len;
-
-	len = ft_strlen(s);
-	if (list->width >= list->accuracy && list->accuracy >= len)
-		list->width = list->width - len;
-	else if (list->width >= list->accuracy && list->accuracy <= len)
+	if (list->width >= list->accuracy && list->accuracy >= list->len)
+		list->width = list->width - list->len;
+	else if (list->width >= list->accuracy && list->accuracy <= list->len)
 		list->width = list->width - list->accuracy;
-	else if ((list->width <= list->accuracy && list->accuracy <= len)
-		|| (list->width <= list->accuracy && list->accuracy >= len))
+	else if ((list->width <= list->accuracy && list->accuracy <= list->len)
+		|| (list->width <= list->accuracy && list->accuracy >= list->len))
 		list->width = 0;
 }
 
@@ -54,18 +51,15 @@ void		ft_s(t_data *list, va_list arg)
 	char	*s;
 	char	*str;
 	int		i;
-	int		len;
 
 	s = NULL;
 	str = NULL;
 	i = 0;
 	s = va_arg(arg, char *);
-	len = ft_strlen(s);
-	if (list->width > len)
+	list->len = ft_strlen(s);
+	if ((list->width > list->len) || (list->width == list->len))
 		str = ((char *)malloc(sizeof(char) * (list->width + 1)));
-	else if (list->width < len)
-		str = ((char *)malloc(sizeof(char) * (len + 1)));
-	else if (list->width == len)
-		str = ((char *)malloc(sizeof(char) * (list->width + 1)));
+	else if (list->width < list->len)
+		str = ((char *)malloc(sizeof(char) * (list->len + 1)));
 	ft_before(list, s, str, i);
 }

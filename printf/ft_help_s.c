@@ -6,7 +6,7 @@
 /*   By: vaisha <vaisha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 17:11:34 by vaisha            #+#    #+#             */
-/*   Updated: 2019/11/27 19:18:09 by vaisha           ###   ########.fr       */
+/*   Updated: 2019/11/28 14:11:14 by vaisha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void		ft_first_s(t_data *list, char *s, char *str, int i)
 	int j;
 
 	j = 0;
-	ft_width_s(list, s);
+	ft_width_s(list);
 	if (list->minus_null == '-')
 	{
 		while (s[j] && list->accuracy-- != 0)
@@ -53,16 +53,15 @@ void		ft_second_s(t_data *list, char *s, char *str, int i)
 void		ft_third_s(t_data *list, char *s, char *str, int i)
 {
 	int j;
-	int len;
 
 	j = 0;
-	len = ft_strlen(s);
-	if (list->width > len)
+	list->len = ft_strlen(s);
+	if (list->width > list->len)
 	{
-		list->width = list->width - len;
+		list->width = list->width - list->len;
 		ft_only_width(list, s, str, i);
 	}
-	else if (list->width < len)
+	else if (list->width < list->len)
 	{
 		while (s[j])
 			str[i++] = s[j++];

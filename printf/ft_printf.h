@@ -6,7 +6,7 @@
 /*   By: vaisha <vaisha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 16:50:51 by vaisha            #+#    #+#             */
-/*   Updated: 2019/11/27 19:07:32 by vaisha           ###   ########.fr       */
+/*   Updated: 2019/11/28 17:39:06 by vaisha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct	s_data
 	char		type;
 	int			ret;
 	int			len;
+	int			count;
 }				t_data;
 
 int		main();
@@ -60,15 +61,17 @@ int     ft_precent(const char *format, va_list arg, t_data *list, int i);
 int		ft_f(t_data *list, va_list arg);
 void	ft_c(t_data *list, va_list arg);
 void	ft_d_i(t_data *list, va_list arg);
-int		ft_o(t_data *list, va_list arg);
+void	ft_o(t_data *list, va_list arg);
 void	ft_p(t_data *list, va_list arg);
 void	ft_s(t_data *list, va_list arg);
 int		ft_u(t_data *list, va_list arg);
 int		ft_x_X(t_data *list, va_list arg);
 int		ft_procent(t_data *list, int i);
 void	ft_before(t_data *list, char *s, char *str, int i);
-void	ft_width_s(t_data *list, char *s);
+void	ft_width_s(t_data *list);
 void	ft_write_and_clean_s(t_data *list, char *s);
 void	ft_only_width(t_data *list, char *s, char *str, int i);
+void	ft_flags_d(t_data *list, char *tmp);
+char	*ft_help_second(t_data *list, char *str, char *ret, int i);
 
 #endif
