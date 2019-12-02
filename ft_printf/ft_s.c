@@ -6,7 +6,7 @@
 /*   By: vaisha <vaisha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 13:00:52 by vaisha            #+#    #+#             */
-/*   Updated: 2019/11/29 18:22:55 by vaisha           ###   ########.fr       */
+/*   Updated: 2019/12/02 17:07:16 by vaisha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,23 @@ void		ft_only_width(t_data *list, char *s, char *str, int i)
 
 void		ft_width_s(t_data *list)
 {
-	if (list->width >= list->accuracy && list->accuracy >= list->len)
-		list->width = list->width - list->len;
-	else if (list->width >= list->accuracy && list->accuracy <= list->len)
-		list->width = list->width - list->accuracy;
-	else if ((list->width <= list->accuracy && list->accuracy <= list->len)
-		|| (list->width <= list->accuracy && list->accuracy >= list->len))
-		list->width = 0;
+	if (list->accuracy != '.')
+	{
+		if (list->width >= list->accuracy && list->accuracy >= list->len)
+			list->width = list->width - list->len;
+		else if (list->width >= list->accuracy && list->accuracy <= list->len)
+			list->width = list->width - list->accuracy;
+		else if ((list->width <= list->accuracy && list->accuracy <= list->len)
+			|| (list->width <= list->accuracy && list->accuracy >= list->len))
+			list->width = 0;
+	}
+	else
+	{
+		if (list->width >= list->len)
+			list->width = list->width - list->len;
+		else if (list->width < list->len)
+			list->width = 0;
+	}
 }
 
 void		ft_s(t_data *list, va_list arg)

@@ -6,7 +6,7 @@
 /*   By: vaisha <vaisha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 16:51:04 by vaisha            #+#    #+#             */
-/*   Updated: 2019/11/29 19:14:37 by vaisha           ###   ########.fr       */
+/*   Updated: 2019/12/02 17:32:42 by vaisha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,11 @@
 
 int		main()
 {
-	int	o;
-	int d = 0;
-	
-	d = 345;
-	o = -123456789;
-	int ret = 0;
-	printf("he:%0.1d\n", d);
-	ret = (ft_printf("my:%0.1d\n", d));
-	printf("%d\n", ret);
+	char	o[] = "hekko";
+
+	// int ret = 0;
+	printf("he:%1.1s\n", o);
+	ft_printf("my:%1.1s\n", o);
+	// printf("%d\n", ret);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: vaisha <vaisha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 17:11:34 by vaisha            #+#    #+#             */
-/*   Updated: 2019/11/28 14:11:14 by vaisha           ###   ########.fr       */
+/*   Updated: 2019/12/02 17:31:34 by vaisha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,12 +96,12 @@ void	ft_fourth_s(t_data *list, char *s, char *str, int i)
 
 void	ft_before(t_data *list, char *s, char *str, int i)
 {
-	if (list->width != 0 && list->accuracy != 0)
+	if (list->width != 0 && list->accuracy != '.')
 		ft_first_s(list, s, str, i);
-	else if (list->width == 0 && list->accuracy == 0)
+	else if (list->width == 0 && list->accuracy == '.')
 		ft_second_s(list, s, str, i);
-	else if (list->width != 0 && list->accuracy == 0)
+	else if (list->width != 0 && list->accuracy == '.')
 		ft_third_s(list, s, str, i);
-	else if (list->width == 0 && list->accuracy != 0)
+	else if (list->width == 0 && list->accuracy != '.')
 		ft_fourth_s(list, s, str, i);
 }

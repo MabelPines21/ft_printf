@@ -6,7 +6,7 @@
 /*   By: vaisha <vaisha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 14:43:25 by vaisha            #+#    #+#             */
-/*   Updated: 2019/11/29 19:24:30 by vaisha           ###   ########.fr       */
+/*   Updated: 2019/12/02 17:01:37 by vaisha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void		ft_null_d(t_data *list, char *tmp, char *res)
 {
 	ft_clean_counts(list);
-	if (list->tmp != 0)
+	if (list->tmp != '.')
 	{
 		while (list->width-- != 0)
 			res[list->i++] = ' ';

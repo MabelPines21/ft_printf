@@ -6,15 +6,15 @@
 /*   By: vaisha <vaisha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 13:01:25 by vaisha            #+#    #+#             */
-/*   Updated: 2019/11/29 19:20:13 by vaisha           ###   ########.fr       */
+/*   Updated: 2019/12/02 17:01:07 by vaisha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char				*ft_oktotorp(t_data *list, char *tmp)
+void					ft_oktotorp(t_data *list, char *tmp)
 {
-	char			*ret;
+	char				*ret;
 
 	ret = NULL;
 	ft_clean_counts(list);
@@ -28,18 +28,18 @@ char				*ft_oktotorp(t_data *list, char *tmp)
 			ret = ft_strjoin("0", tmp);
 	}
 	ft_clean_s(tmp);
-	return (ret);
+	ft_width_d(list, ret);
 }
 
-char				*ft_accuracy_o(t_data *list, char *tmp)
+char					*ft_accuracy_o(t_data *list, char *tmp)
 {
-	char			*ret;
+	char				*ret;
 
 	ret = NULL;
 	ft_clean_counts(list);
-	if (list->accuracy >= list->len)
+	list->tmp = list->accuracy;
+	if (list->accuracy != '.' && list->accuracy >= list->len)
 	{
-		list->tmp = list->accuracy;
 		ret = (char*)malloc(sizeof(char) * list->accuracy + 2);
 		if (tmp[list->i] == '-')
 		{
@@ -53,7 +53,7 @@ char				*ft_accuracy_o(t_data *list, char *tmp)
 			ret[list->i++] = tmp[list->j++];
 		ret[list->i] = '\0';
 	}
-	else if (list->accuracy < list->len)
+	else
 		ret = ft_strdup(tmp);
 	ft_clean_s(tmp);
 	return (ret);
@@ -81,7 +81,7 @@ char					*ft_conversion_o(long long int value, int base)
 	return (str);
 }
 
-void	ft_o(t_data *list, va_list arg)
+void					ft_o(t_data *list, va_list arg)
 {
 	long long int		o;
 	char				*tmp;
@@ -93,6 +93,5 @@ void	ft_o(t_data *list, va_list arg)
 	tmp = ft_conversion_o(o, 8);
 	list->len = ft_strlen(tmp);
 	tmp = ft_accuracy_o(list, tmp);
-	tmp = ft_oktotorp(list, tmp);
-	ft_write_and_clean_s(list, tmp);
+	ft_oktotorp(list, tmp);
 }

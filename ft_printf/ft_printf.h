@@ -6,7 +6,7 @@
 /*   By: vaisha <vaisha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 16:50:51 by vaisha            #+#    #+#             */
-/*   Updated: 2019/11/29 19:19:10 by vaisha           ###   ########.fr       */
+/*   Updated: 2019/12/02 17:25:53 by vaisha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct	s_data
 	char		minus_null;
 	char		hash;
 	int			width;
-	int			accuracy;
+	char		accuracy;
 	char		point;
 	int			length;
 	char		type;
