@@ -6,7 +6,7 @@
 /*   By: vaisha <vaisha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 13:01:25 by vaisha            #+#    #+#             */
-/*   Updated: 2019/12/02 17:01:07 by vaisha           ###   ########.fr       */
+/*   Updated: 2019/12/09 16:11:02 by vaisha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,15 @@ void					ft_oktotorp(t_data *list, char *tmp)
 		ret = ft_strdup(tmp);
 	else if (list->hash == '#')
 	{
-		if (list->tmp > list->len)
+		if (tmp[0] != '0')
+		{
+			if (list->tmp > list->len)
+				ret = ft_strdup(tmp);
+			else if (list->tmp <= list->len)
+				ret = ft_strjoin("0", tmp);
+		}
+		else if (tmp[0] == '0')
 			ret = ft_strdup(tmp);
-		else if (list->tmp <= list->len)
-			ret = ft_strjoin("0", tmp);
 	}
 	ft_clean_s(tmp);
 	ft_width_d(list, ret);
@@ -38,9 +43,9 @@ char					*ft_accuracy_o(t_data *list, char *tmp)
 	ret = NULL;
 	ft_clean_counts(list);
 	list->tmp = list->accuracy;
-	if (list->accuracy != '.' && list->accuracy >= list->len)
+	if (list->accuracy >= list->len)
 	{
-		ret = (char*)malloc(sizeof(char) * list->accuracy + 2);
+		ret = (char*)malloc(sizeof(char) * list->accuracy + 3);
 		if (tmp[list->i] == '-')
 		{
 			ret[list->i++] = '-';
@@ -52,6 +57,11 @@ char					*ft_accuracy_o(t_data *list, char *tmp)
 		while (tmp[list->j])
 			ret[list->i++] = tmp[list->j++];
 		ret[list->i] = '\0';
+	}
+	else if (list->accuracy == 0 && list->point == '.' && tmp[0] == '0')
+	{
+		ret = (char*)malloc(sizeof(char) * 1);
+		ret[0] = '\0';
 	}
 	else
 		ret = ft_strdup(tmp);

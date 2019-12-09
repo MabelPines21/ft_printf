@@ -6,7 +6,7 @@
 /*   By: vaisha <vaisha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 17:11:34 by vaisha            #+#    #+#             */
-/*   Updated: 2019/12/02 17:31:34 by vaisha           ###   ########.fr       */
+/*   Updated: 2019/12/09 19:25:38 by vaisha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,17 @@ void		ft_first_s(t_data *list, char *s, char *str, int i)
 		while (list->width-- != 0)
 			str[i++] = ' ';
 	}
-	else if (list->minus_null != '-')
+	else if (list->minus_null == '0')
+	{
+		while (list->width-- != 0)
+			str[i++] = '0';
+		while (s[j] && list->accuracy != 0)
+		{
+			str[i++] = s[j++];
+			list->accuracy--;
+		}
+	}
+	else if (list->minus_null == '.')
 	{
 		while (list->width-- != 0)
 			str[i++] = ' ';
@@ -44,10 +54,13 @@ void		ft_second_s(t_data *list, char *s, char *str, int i)
 	int j;
 
 	j = 0;
-	while (s[j])
-		str[i++] = s[j++];
-	str[i] = '\0';
-	ft_write_and_clean_s(list, str);
+	if (list->point == '0')
+	{
+		while (s[j])
+			str[i++] = s[j++];
+		str[i] = '\0';
+		ft_write_and_clean_s(list, str);
+	}
 }
 
 void		ft_third_s(t_data *list, char *s, char *str, int i)
@@ -56,17 +69,23 @@ void		ft_third_s(t_data *list, char *s, char *str, int i)
 
 	j = 0;
 	list->len = ft_strlen(s);
-	if (list->width > list->len)
+	if (list->width >= list->len)
 	{
-		list->width = list->width - list->len;
+		if (list->point == '0')
+			list->width = list->width - list->len;
 		ft_only_width(list, s, str, i);
 	}
 	else if (list->width < list->len)
 	{
-		while (s[j])
-			str[i++] = s[j++];
-		str[i] = '\0';
-		ft_write_and_clean_s(list, str);
+		if (list->point == '0')
+		{
+			while (s[j])
+				str[i++] = s[j++];
+			str[i] = '\0';
+			ft_write_and_clean_s(list, str);
+		}
+		else if (list->point == '.')
+			ft_width_null_s(list, s, str);
 	}
 }
 
@@ -96,12 +115,12 @@ void	ft_fourth_s(t_data *list, char *s, char *str, int i)
 
 void	ft_before(t_data *list, char *s, char *str, int i)
 {
-	if (list->width != 0 && list->accuracy != '.')
+	if (list->width != 0 && list->accuracy != 0)
 		ft_first_s(list, s, str, i);
-	else if (list->width == 0 && list->accuracy == '.')
+	else if (list->width == 0 && list->accuracy == 0)
 		ft_second_s(list, s, str, i);
-	else if (list->width != 0 && list->accuracy == '.')
+	else if (list->width != 0 && list->accuracy == 0)
 		ft_third_s(list, s, str, i);
-	else if (list->width == 0 && list->accuracy != '.')
+	else if (list->width == 0 && list->accuracy != 0)
 		ft_fourth_s(list, s, str, i);
 }

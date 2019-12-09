@@ -6,11 +6,11 @@
 #    By: vaisha <vaisha@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/19 14:21:49 by vaisha            #+#    #+#              #
-#    Updated: 2019/11/20 19:16:12 by vaisha           ###   ########.fr        #
+#    Updated: 2019/12/06 15:36:59 by vaisha           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ft_printf.a
+NAME = libftprintf.a
 
 FLAGS = -g -Wall -Werror -Wextra
 
@@ -25,6 +25,7 @@ $(NAME):
 		@gcc -c $(HEAD) $(FUNCT) $(FLAGS)
 		@ar -rv $(NAME) $(FILE_O)
 		@ranlib $(NAME)
+		@./a.out | cat -e
 
 all: $(NAME)
 

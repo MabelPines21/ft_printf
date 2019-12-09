@@ -6,7 +6,7 @@
 /*   By: vaisha <vaisha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 13:01:15 by vaisha            #+#    #+#             */
-/*   Updated: 2019/12/02 17:02:45 by vaisha           ###   ########.fr       */
+/*   Updated: 2019/12/09 15:33:09 by vaisha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char				*ft_accuracy(t_data *list, char *tmp)
 	ret = NULL;
 	ft_clean_counts(list);
 	list->tmp = list->accuracy;
-	if (list->accuracy != '.' && list->accuracy >= list->len)
+	if (list->accuracy >= list->len)
 	{
 		ret = (char*)malloc(sizeof(char) * list->accuracy + 2);
 		if (tmp[list->i] == '-')

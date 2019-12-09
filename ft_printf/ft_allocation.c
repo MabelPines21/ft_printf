@@ -6,7 +6,7 @@
 /*   By: vaisha <vaisha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 19:04:51 by vaisha            #+#    #+#             */
-/*   Updated: 2019/12/02 16:56:01 by vaisha           ###   ########.fr       */
+/*   Updated: 2019/12/06 14:35:49 by vaisha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,21 @@
 
 void	ft_allocation(t_data *list, va_list arg)
 {
-	if (list->type == 'c')
+	if (list->type == 'c' || list->type == 'c')
 		ft_c(list, arg);
-	else if (list->type == 's')
+	else if (list->type == 's' || list->type == 'S')
 		ft_s(list, arg);
-	else if (list->type == 'p')
+	else if (list->type == 'p' || list->type == 'P')
 		ft_p(list, arg);
-	else if (list->type == 'd' || list->type == 'i')
+	else if (list->type == 'd' || list->type == 'i' || list->type == 'D'
+			|| list->type == 'I')
 		ft_d_i(list, arg);
-	else if (list->type == 'o')
+	else if (list->type == 'o' || list->type == 'O')
 		ft_o(list, arg);
-	// else if (list->type == 'u')
-		// ft_u(list, arg);
-	/*else if (list->type == 'x' || list->type == 'X')
-		ft_x_X(list, arg);
-	else if (list->type == 'f')
+	else if (list->type == 'u' || list->type == 'U')
+		ft_u(list, arg);
+	else if (list->type == 'x' || list->type == 'X')
+		ft_x(list, arg);
+	/*else if (list->type == 'f' || list->type == 'F')
 		ft_f(list, arg);
 */}

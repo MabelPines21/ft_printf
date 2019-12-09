@@ -6,7 +6,7 @@
 /*   By: vaisha <vaisha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 19:43:06 by vaisha            #+#    #+#             */
-/*   Updated: 2019/12/02 17:22:31 by vaisha           ###   ########.fr       */
+/*   Updated: 2019/12/03 19:10:12 by vaisha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void		ft_clean_list(t_data *list)
 	list->minus_null = '.';
 	list->hash = '.';
 	list->width = 0;
-	list->accuracy = '.';
+	list->accuracy = 0;
 	list->length = 0;
 	list->type = '.';
 	list->point = '0';
@@ -44,7 +44,7 @@ void		ft_clean_all(t_data *list)
 
 void		ft_clean_s(char *s)
 {
-	if (s && *s)
+	if (s)
 	{
 		free(s);
 		s = NULL;

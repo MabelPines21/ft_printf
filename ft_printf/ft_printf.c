@@ -6,7 +6,7 @@
 /*   By: vaisha <vaisha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/13 19:17:26 by vaisha            #+#    #+#             */
-/*   Updated: 2019/12/02 16:01:56 by vaisha           ###   ########.fr       */
+/*   Updated: 2019/12/06 14:38:15 by vaisha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,7 @@ int			ft_parcing(const char *format, va_list arg, int i, t_data *list)
 			i = rem_width_accuracy(format, arg, i, list);
 		else if (format[i] == 'l' || format[i] == 'h' || format[i] == 'L')
 			rem_length(format, i, list);
-		else if (format[i] == 'c' || format[i] == 's' || format[i] == 'p' ||
-			format[i] == 'd' || format[i] == 'i' || format[i] == 'o' ||
-			format[i] == 'u' || format[i] == 'x' || format[i] == 'X' ||
-			format[i] == 'f')
+		else if (ft_isalpha(format[i]))
 			rem_type(format, i, list);
 		i++;
 	}

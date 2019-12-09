@@ -6,7 +6,7 @@
 /*   By: vaisha <vaisha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 18:36:02 by vaisha            #+#    #+#             */
-/*   Updated: 2019/10/30 17:13:40 by vaisha           ###   ########.fr       */
+/*   Updated: 2019/12/06 15:13:22 by vaisha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void		ft_first_procent(t_data *list, char *s, int x)
 {
 	if (list->minus_null == '-')
 	{
-		s[x] = '%';
+		s[x++] = '%';
 		while (list->width && list->width != 1)
 		{
 			s[x++] = ' ';

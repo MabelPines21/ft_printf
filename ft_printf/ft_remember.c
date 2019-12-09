@@ -6,11 +6,27 @@
 /*   By: vaisha <vaisha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/20 14:51:59 by vaisha            #+#    #+#             */
-/*   Updated: 2019/12/02 17:24:55 by vaisha           ###   ########.fr       */
+/*   Updated: 2019/12/03 17:05:31 by vaisha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+void	rem_null(const char *format, int i, t_data *list)
+{
+	if (list->point == '.' && list->accuracy != 0)
+	{
+		if (list->minus_null == '.')
+			list->minus_null = format[i];
+	}
+	else if (list->point == '.' && list->accuracy == 0)
+		list->accuracy = 0;
+	else if (list->point != '.' && list->accuracy == 0)
+	{
+		if (list->minus_null == '.')
+			list->minus_null = format[i];
+	}
+}
 
 void	rem_flag(const char *format, int i, t_data *list)
 {
@@ -22,20 +38,7 @@ void	rem_flag(const char *format, int i, t_data *list)
 	else if (format[i] == '-')
 		list->minus_null = format[i];
 	else if (format[i] == '0')
-	{
-		if (list->point == '.' && list->accuracy != '.')
-		{
-			if (list->minus_null == '.')
-				list->minus_null = format[i];
-		}
-		else if (list->point == '.' && list->accuracy == '.')
-			list->accuracy = 0;
-		else if (list->point != '.' && list->accuracy != '.')
-		{
-			if (list->minus_null == '.')
-				list->minus_null = format[i];
-		}
-	}
+		rem_null(format, i, list);
 	else if (format[i] == '#')
 		list->hash = format[i];
 }

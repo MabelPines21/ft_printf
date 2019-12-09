@@ -6,32 +6,11 @@
 /*   By: vaisha <vaisha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 13:00:29 by vaisha            #+#    #+#             */
-/*   Updated: 2019/11/29 19:22:06 by vaisha           ###   ########.fr       */
+/*   Updated: 2019/12/09 15:34:24 by vaisha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-void		ft_yes_w(char *s, t_data *list, va_list arg)
-{
-	ft_clean_counts(list);
-	list->width -= 1;
-	s = (char*)malloc(sizeof(char) * (list->width + 2));
-	if (list->minus_null == '-')
-	{
-		s[list->i++] = va_arg(arg, int);
-		while (list->width-- != 0)
-			s[list->i++] = ' ';
-	}
-	else if (list->minus_null != '-')
-	{
-		while (list->width-- != 0)
-			s[list->i++] = ' ';
-		s[list->i++] = va_arg(arg, int);
-	}
-	s[list->i] = '\0';
-	ft_write_and_clean_s(list, s);
-}
 
 void		ft_c(t_data *list, va_list arg)
 {
@@ -39,13 +18,16 @@ void		ft_c(t_data *list, va_list arg)
 
 	s = NULL;
 	ft_clean_counts(list);
-	if (list->width == 0)
+	s = (char*)malloc(sizeof(char) * 2);
+	s[0] = va_arg(arg, int);
+	s[1] = '\0';
+	if ((s[0] && s[0] == 0) || s[0] == '\0')
+		ft_null(list, s);
+	else
 	{
-		s = (char*)malloc(sizeof(char) * 2);
-		s[list->j++] = va_arg(arg, int);
-		s[list->j] = '\0';
-		ft_write_and_clean_s(list, s);
+		if (list->width == 0)
+			ft_write_and_clean_s(list, s);
+		else if (list->width != 0)
+			ft_width_d(list, s);
 	}
-	else if (list->width != 0)
-		ft_yes_w(s, list, arg);
 }
