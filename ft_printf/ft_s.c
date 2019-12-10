@@ -6,7 +6,7 @@
 /*   By: vaisha <vaisha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 13:00:52 by vaisha            #+#    #+#             */
-/*   Updated: 2019/12/09 19:30:27 by vaisha           ###   ########.fr       */
+/*   Updated: 2019/12/10 15:56:04 by vaisha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,9 @@ void		ft_width_null_s(t_data *list, char *tmp, char *str)
 {
 	ft_clean_counts(list);
 	if (list->minus_null == '.')
-	{
-		while (list->width-- != 0)
-			str[list->i++] = ' ';
-		if (list->point == '0')
-		{
-			while (tmp[list->j])
-				str[list->i++] = tmp[list->j++];
-		}
-	}
+		ft_list_null3(list, tmp, str);
 	else if (list->minus_null == '-')
-	{
-		if (list->point == '0')
-		{
-			while (tmp[list->j])
-				str[list->i++] = tmp[list->j++];
-		}
-		while (list->width-- != 0)
-			str[list->i++] = ' ';
-	}
+		ft_list_null3(list, tmp, str);
 	else if (list->minus_null == '0')
 	{
 		while (list->width-- != 0)
@@ -44,48 +28,30 @@ void		ft_width_null_s(t_data *list, char *tmp, char *str)
 			while (tmp[list->j])
 				str[list->i++] = tmp[list->j++];
 		}
+		str[list->i] = '\0';
+		ft_write_and_clean_s(list, str);
 	}
-	str[list->i] = '\0';
-	ft_write_and_clean_s(list, str);
 }
 
-void		ft_only_width(t_data *list, char *s, char *str, int i)
+void		ft_only_width(t_data *list, char *s, char *str)
 {
-	int j;
-
-	j = 0;
+	ft_clean_counts(list);
 	if (list->minus_null == '.')
-	{
-		while (list->width-- != 0)
-			str[i++] = ' ';
-		if (list->point == '0')
-		{
-			while (s[j])
-				str[i++] = s[j++];
-		}
-	}
+		ft_list_null2(list, s, str);
 	else if (list->minus_null == '-')
 	{
 		if (list->point == '0')
 		{
-			while (s[j])
-				str[i++] = s[j++];
+			while (s[list->j])
+				str[list->i++] = s[list->j++];
 		}
 		while (list->width-- != 0)
-			str[i++] = ' ';
+			str[list->i++] = ' ';
+		str[list->i] = '\0';
+		ft_write_and_clean_s(list, str);
 	}
 	else if (list->minus_null == '0')
-	{
-		while (list->width-- != 0)
-			str[i++] = '0';
-		if (list->point == '0')
-		{
-			while (s[j])
-				str[i++] = s[j++];
-		}
-	}
-	str[i] = '\0';
-	ft_write_and_clean_s(list, str);
+		ft_list_null(list, s, str);
 }
 
 void		ft_width_s(t_data *list)
@@ -113,11 +79,9 @@ void		ft_s(t_data *list, va_list arg)
 {
 	char	*s;
 	char	*str;
-	int		i;
 
 	s = NULL;
 	str = NULL;
-	i = 0;
 	list->len = 0;
 	if ((s = va_arg(arg, char *)) != NULL)
 	{
@@ -126,7 +90,7 @@ void		ft_s(t_data *list, va_list arg)
 			str = ((char *)malloc(sizeof(char) * (list->width + 1)));
 		else if (list->width < list->len)
 			str = ((char *)malloc(sizeof(char) * (list->len + 1)));
-		ft_before(list, s, str, i);
+		ft_before(list, s, str);
 	}
 	else if (s == NULL)
 		ft_null_s(list, str);

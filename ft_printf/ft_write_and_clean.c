@@ -6,7 +6,7 @@
 /*   By: vaisha <vaisha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 19:43:06 by vaisha            #+#    #+#             */
-/*   Updated: 2019/12/03 19:10:12 by vaisha           ###   ########.fr       */
+/*   Updated: 2019/12/10 15:46:43 by vaisha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void		ft_clean_list(t_data *list)
 	list->i = 0;
 	list->j = 0;
 	list->tmp = 0;
+	list->nol = 0;
 }
 
 void		ft_clean_all(t_data *list)
@@ -53,12 +54,10 @@ void		ft_clean_s(char *s)
 
 void		ft_write_and_clean_s(t_data *list, char *s)
 {
-	int		i;
-
-	i = 0;
-	while (s && s[i])
+	ft_clean_counts(list);
+	while (s && s[list->i])
 	{
-		write(1, &s[i++], 1);
+		write(1, &s[list->i++], 1);
 		list->ret++;
 	}
 	ft_clean_s(s);

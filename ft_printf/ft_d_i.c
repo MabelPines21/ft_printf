@@ -6,7 +6,7 @@
 /*   By: vaisha <vaisha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 13:01:15 by vaisha            #+#    #+#             */
-/*   Updated: 2019/12/09 15:33:09 by vaisha           ###   ########.fr       */
+/*   Updated: 2019/12/10 14:45:40 by vaisha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,15 @@
 void				ft_plus_space(t_data *list, char *tmp)
 {
 	char			*ret;
-	int				len;
 
 	ft_clean_counts(list);
-	len = 0;
 	ret = NULL;
-	len = ft_strlen(tmp);
+	list->len = ft_strlen(tmp);
 	if (list->plus_space == '.' || tmp[0] == '-')
 		ret = ft_strdup(tmp);
 	else if (list->plus_space != '.' && tmp[0] != '-')
 	{
-		ret = (char *)malloc(sizeof(char) * len + 2);
+		ret = (char *)malloc(sizeof(char) * list->len + 2);
 		ret[list->i++] = list->plus_space;
 		while (tmp[list->j])
 			ret[list->i++] = tmp[list->j++];
@@ -35,12 +33,8 @@ void				ft_plus_space(t_data *list, char *tmp)
 	ft_width_d(list, ret);
 }
 
-char				*ft_accuracy(t_data *list, char *tmp)
+char				*ft_accuracy(t_data *list, char *tmp, char *ret)
 {
-	char			*ret;
-
-	ret = NULL;
-	ft_clean_counts(list);
 	list->tmp = list->accuracy;
 	if (list->accuracy >= list->len)
 	{
@@ -56,6 +50,11 @@ char				*ft_accuracy(t_data *list, char *tmp)
 		while (tmp[list->j])
 			ret[list->i++] = tmp[list->j++];
 		ret[list->i] = '\0';
+	}
+	else if (list->accuracy == 0 && list->point == '.')
+	{
+		ret = (char*)malloc(sizeof(char) * 1);
+		ret[0] = '\0';
 	}
 	else
 		ret = ft_strdup(tmp);
@@ -110,12 +109,17 @@ void				ft_d_i(t_data *list, va_list arg)
 {
 	long long int	value;
 	char			*tmp;
+	char			*ret;
 
+	ret = NULL;
 	value = 0;
 	tmp = NULL;
 	value = ft_length_d(list, arg);
+	if ((list->type == 'i' && list->length == 5) || list->length == 3)
+		value = ft_help_i(list, value);
 	tmp = ft_conversion_d(value);
 	list->len = ft_strlen(tmp);
-	tmp = ft_accuracy(list, tmp);
+	ft_clean_counts(list);
+	tmp = ft_accuracy(list, tmp, ret);
 	ft_plus_space(list, tmp);
 }

@@ -6,7 +6,7 @@
 /*   By: vaisha <vaisha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 16:51:04 by vaisha            #+#    #+#             */
-/*   Updated: 2019/12/09 19:56:38 by vaisha           ###   ########.fr       */
+/*   Updated: 2019/12/10 16:00:50 by vaisha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 int		main()
 {
-	int *p;
+	int i;
 
-	p = 0;
-	//printf("he :%#-5.x", 0);
-	ft_printf("my :%#-5.x", 0);
+	i = 0;
+	//printf("he :%09s", "so low");
+	i = ft_printf("my :%09s\n", "so low");
+	printf("%d", i);
 	return (0);
 }

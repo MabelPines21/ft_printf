@@ -6,7 +6,7 @@
 /*   By: vaisha <vaisha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/13 19:17:26 by vaisha            #+#    #+#             */
-/*   Updated: 2019/12/06 14:38:15 by vaisha           ###   ########.fr       */
+/*   Updated: 2019/12/10 16:08:57 by vaisha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,10 @@ int			ft_printf(const char *format, ...)
 	va_list	ap;
 	t_data	*list;
 	int		i;
+	int		res;
 
 	i = 0;
+	res = 0;
 	list = NULL;
 	va_start(ap, format);
 	list = (t_data*)malloc(sizeof(t_data));
@@ -81,5 +83,6 @@ int			ft_printf(const char *format, ...)
 	ft_check(format, ap, list, i);
 	ft_clean_all(list);
 	va_end(ap);
-	return (0);
+	res = list->ret;
+	return (res);
 }

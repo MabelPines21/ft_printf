@@ -6,13 +6,13 @@
 /*   By: vaisha <vaisha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 17:49:18 by vaisha            #+#    #+#             */
-/*   Updated: 2019/12/09 19:24:21 by vaisha           ###   ########.fr       */
+/*   Updated: 2019/12/10 15:42:48 by vaisha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		ft_first_null(t_data *list, char *tmp, char *str)
+void			ft_first_null(t_data *list, char *tmp, char *str)
 {
 	ft_clean_counts(list);
 	ft_width_s(list);
@@ -37,7 +37,7 @@ void		ft_first_null(t_data *list, char *tmp, char *str)
 	ft_write_and_clean_s(list, str);
 }
 
-void		ft_second_null(t_data *list, char *tmp, char *str)
+void			ft_second_null(t_data *list, char *tmp, char *str)
 {
 	ft_clean_counts(list);
 	if (list->point == '0')
@@ -49,7 +49,7 @@ void		ft_second_null(t_data *list, char *tmp, char *str)
 	}
 }
 
-void		ft_third_null(t_data *list, char *tmp, char *str)
+void			ft_third_null(t_data *list, char *tmp, char *str)
 {
 	ft_clean_counts(list);
 	if (list->width >= list->len)
@@ -72,7 +72,7 @@ void		ft_third_null(t_data *list, char *tmp, char *str)
 	}
 }
 
-void	ft_fourth_null(t_data *list, char *tmp, char *str)
+void			ft_fourth_null(t_data *list, char *tmp, char *str)
 {
 	ft_clean_counts(list);
 	if (list->accuracy > list->len)
@@ -92,7 +92,7 @@ void	ft_fourth_null(t_data *list, char *tmp, char *str)
 	ft_write_and_clean_s(list, str);
 }
 
-void		ft_null_s(t_data *list, char *str)
+void			ft_null_s(t_data *list, char *str)
 {
 	char	*tmp;
 

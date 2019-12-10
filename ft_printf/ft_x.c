@@ -6,7 +6,7 @@
 /*   By: vaisha <vaisha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 13:02:07 by vaisha            #+#    #+#             */
-/*   Updated: 2019/12/09 19:58:07 by vaisha           ###   ########.fr       */
+/*   Updated: 2019/12/10 15:46:56 by vaisha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void					ft_oktotorp_x(t_data *list, char *tmp)
 	ft_clean_counts(list);
 	if (list->hash == '.')
 		ret = ft_strdup(tmp);
-	else if (list->hash == '#' && tmp[0] != '0')
+	else if (list->hash == '#' && list->nol == 0)
 	{
 		if (list->type == 'x')
 			ret = ft_strjoin("0x", tmp);
@@ -85,7 +85,7 @@ char	*ft_conversion_x(unsigned long long value, int base, t_data *list)
 	return (str);
 }
 
-void	ft_x(t_data *list, va_list arg)
+void		ft_x(t_data *list, va_list arg)
 {
 	unsigned long long	x;
 	char				*str;
@@ -94,6 +94,8 @@ void	ft_x(t_data *list, va_list arg)
 	str = NULL;
 	ft_clean_counts(list);
 	x = va_arg(arg, unsigned long long);
+	if (x == 0)
+		list->nol = 1;
 	str = ft_conversion_x(x, 16, list);
 	str = ft_accuracy_x(list, str);
 	ft_oktotorp_x(list, str);

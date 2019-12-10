@@ -6,82 +6,70 @@
 /*   By: vaisha <vaisha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 17:11:34 by vaisha            #+#    #+#             */
-/*   Updated: 2019/12/09 19:25:38 by vaisha           ###   ########.fr       */
+/*   Updated: 2019/12/10 15:59:04 by vaisha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		ft_first_s(t_data *list, char *s, char *str, int i)
+void			ft_first_s(t_data *list, char *s, char *str)
 {
-	int j;
-
-	j = 0;
+	ft_clean_counts(list);
 	ft_width_s(list);
 	if (list->minus_null == '-')
 	{
-		while (s[j] && list->accuracy-- != 0)
-			str[i++] = s[j++];
+		while (s[list->j] && list->accuracy-- != 0)
+			str[list->i++] = s[list->j++];
 		while (list->width-- != 0)
-			str[i++] = ' ';
+			str[list->i++] = ' ';
+		str[list->i] = '\0';
+		ft_write_and_clean_s(list, str);
 	}
 	else if (list->minus_null == '0')
-	{
-		while (list->width-- != 0)
-			str[i++] = '0';
-		while (s[j] && list->accuracy != 0)
-		{
-			str[i++] = s[j++];
-			list->accuracy--;
-		}
-	}
+		ft_list_null(list, s, str);
 	else if (list->minus_null == '.')
 	{
 		while (list->width-- != 0)
-			str[i++] = ' ';
-		while (s[j] && list->accuracy != 0)
+			str[list->i++] = ' ';
+		while (s[list->j] && list->accuracy != 0)
 		{
-			str[i++] = s[j++];
+			str[list->i++] = s[list->j++];
 			list->accuracy--;
 		}
-	}
-	str[i] = '\0';
-	ft_write_and_clean_s(list, str);
-}
-
-void		ft_second_s(t_data *list, char *s, char *str, int i)
-{
-	int j;
-
-	j = 0;
-	if (list->point == '0')
-	{
-		while (s[j])
-			str[i++] = s[j++];
-		str[i] = '\0';
+		str[list->i] = '\0';
 		ft_write_and_clean_s(list, str);
 	}
 }
 
-void		ft_third_s(t_data *list, char *s, char *str, int i)
+void			ft_second_s(t_data *list, char *s, char *str)
 {
-	int j;
+	ft_clean_counts(list);
+	if (list->point == '0')
+	{
+		while (s[list->j])
+			str[list->i++] = s[list->j++];
+		str[list->i] = '\0';
+		ft_write_and_clean_s(list, str);
+	}
+}
 
-	j = 0;
+void			ft_third_s(t_data *list, char *s, char *str)
+{
+	ft_clean_counts(list);
 	list->len = ft_strlen(s);
 	if (list->width >= list->len)
 	{
 		if (list->point == '0')
 			list->width = list->width - list->len;
-		ft_only_width(list, s, str, i);
+		ft_only_width(list, s, str);
 	}
 	else if (list->width < list->len)
 	{
 		if (list->point == '0')
 		{
-			while (s[j])
-				str[i++] = s[j++];
-			str[i] = '\0';
+			while (s[list->j])
+				str[list->i++] = s[list->j++];
+			str[list->i] = '\0';
 			ft_write_and_clean_s(list, str);
 		}
 		else if (list->point == '.')
@@ -89,38 +77,35 @@ void		ft_third_s(t_data *list, char *s, char *str, int i)
 	}
 }
 
-void	ft_fourth_s(t_data *list, char *s, char *str, int i)
+void			ft_fourth_s(t_data *list, char *s, char *str)
 {
-	int j;
-	int	len;
-
-	j = 0;
-	len = ft_strlen(s);
-	if (list->accuracy > len)
+	ft_clean_counts(list);
+	list->len = ft_strlen(s);
+	if (list->accuracy > list->len)
 	{
-		while (s[j])
-			str[i++] = s[j++];
+		while (s[list->j])
+			str[list->i++] = s[list->j++];
 	}
-	else if (list->accuracy < len)
+	else if (list->accuracy < list->len)
 	{
 		while (list->accuracy != 0)
 		{
-			str[i++] = s[j++];
+			str[list->i++] = s[list->j++];
 			list->accuracy--;
 		}
 	}
-	str[i] = '\0';
+	str[list->i] = '\0';
 	ft_write_and_clean_s(list, str);
 }
 
-void	ft_before(t_data *list, char *s, char *str, int i)
+void			ft_before(t_data *list, char *s, char *str)
 {
 	if (list->width != 0 && list->accuracy != 0)
-		ft_first_s(list, s, str, i);
+		ft_first_s(list, s, str);
 	else if (list->width == 0 && list->accuracy == 0)
-		ft_second_s(list, s, str, i);
+		ft_second_s(list, s, str);
 	else if (list->width != 0 && list->accuracy == 0)
-		ft_third_s(list, s, str, i);
+		ft_third_s(list, s, str);
 	else if (list->width == 0 && list->accuracy != 0)
-		ft_fourth_s(list, s, str, i);
+		ft_fourth_s(list, s, str);
 }
