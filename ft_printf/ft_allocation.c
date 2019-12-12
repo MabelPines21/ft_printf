@@ -6,7 +6,7 @@
 /*   By: vaisha <vaisha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 19:04:51 by vaisha            #+#    #+#             */
-/*   Updated: 2019/12/10 15:48:31 by vaisha           ###   ########.fr       */
+/*   Updated: 2019/12/12 15:42:37 by vaisha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ void	ft_allocation(t_data *list, va_list arg)
 		ft_u(list, arg);
 	else if (list->type == 'x' || list->type == 'X')
 		ft_x(list, arg);
-	/*else if (list->type == 'f' || list->type == 'F')
-		ft_f(list, arg, pol);
-*/}
+	// else if (list->type == 'f' || list->type == 'F')
+		// ft_f(list, arg);
+}

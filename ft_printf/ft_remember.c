@@ -6,7 +6,7 @@
 /*   By: vaisha <vaisha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/20 14:51:59 by vaisha            #+#    #+#             */
-/*   Updated: 2019/12/10 12:27:51 by vaisha           ###   ########.fr       */
+/*   Updated: 2019/12/12 15:30:03 by vaisha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	rem_null(const char *format, int i, t_data *list)
 
 void	rem_flag(const char *format, int i, t_data *list)
 {
-
 	if (format[i] == '+')
 		list->plus_space = format[i];
 	else if ((format[i] == ' ') && (list->plus_space == '.'))

@@ -6,7 +6,7 @@
 /*   By: vaisha <vaisha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 13:01:54 by vaisha            #+#    #+#             */
-/*   Updated: 2019/12/10 15:43:50 by vaisha           ###   ########.fr       */
+/*   Updated: 2019/12/12 15:30:50 by vaisha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char					*ft_accuracy_u(t_data *list, char *tmp)
 	return (ret);
 }
 
-char	*ft_conversion_u(long long int value, int base)
+char					*ft_conversion_u(long long int value, int base)
 {
 	char				*str;
 	short				size;
@@ -64,10 +64,10 @@ char	*ft_conversion_u(long long int value, int base)
 	return (str);
 }
 
-void	ft_u(t_data *list, va_list arg)
+void					ft_u(t_data *list, va_list arg)
 {
-	long long int	u;
-	char			*str;
+	long long int		u;
+	char				*str;
 
 	u = 0;
 	ft_clean_counts(list);

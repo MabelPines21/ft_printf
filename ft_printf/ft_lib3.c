@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lib3.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vaisha <vaisha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/16 16:51:04 by vaisha            #+#    #+#             */
-/*   Updated: 2019/12/12 15:34:13 by vaisha           ###   ########.fr       */
+/*   Created: 2019/12/12 14:58:54 by vaisha            #+#    #+#             */
+/*   Updated: 2019/12/12 14:59:16 by vaisha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		main(void)
+char	*ft_strchr(const char *str, int ch)
 {
-	int i;
+	char	*s;
+	int		i;
 
+	s = (char *)str;
 	i = 0;
-	printf("he :%#f", 567.7);
-	i = ft_printf("my :%#f", 567.7);
-	printf("%d", i);
-	return (0);
+	while (s[i] != ch)
+	{
+		if (s[i] == '\0')
+			return (NULL);
+		i++;
+	}
+	return (s + i);
 }
